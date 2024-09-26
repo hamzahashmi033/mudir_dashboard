@@ -38,7 +38,7 @@ export default function HomeSlice() {
 
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
-   useEffect(() => {
+  useEffect(() => {
     if (status === "succeeded") {
       alertOpen();
       // Close the alert after 2 seconds
@@ -53,7 +53,7 @@ export default function HomeSlice() {
   useEffect(() => {
     dispatch(fetchProjects());
   }, [dispatch]);
-  
+
   useEffect(() => {
     // Set loading to false after a short delay to ensure layout is correctly set
     const timer = setTimeout(() => {
@@ -77,7 +77,11 @@ export default function HomeSlice() {
   }
 
   return (
-    <Flex color="white" direction={{ base: "column", lg: "row" }}>
+    <Flex
+      color="white"
+      className="overflow-x-hidden"
+      direction={{ base: "column", lg: "row" }}
+    >
       <ProjectDrawer isOpen={isOpen2} onClose={onClose2} btnRef={btnRef} />
       {!isMobile ? (
         <Flex className="w-[25%]" w={{ base: "100%", lg: "25%" }}>
