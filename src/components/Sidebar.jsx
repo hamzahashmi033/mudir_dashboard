@@ -7,7 +7,11 @@ import BasicMenu from "./Menu";
 import PinnedProjects from "./PinnedProjects";
 const Sidebar = () => {
   return (
-    <Flex direction={"column"} className="xxxs:w-[120%] p-2 xxxs:-ml-7 lg:-ml-0 relative" bg={"#F4F6FA"}>
+    <Flex
+      direction={"column"}
+      className="xxxs:w-[120%]  p-2 xxxs:-ml-7 lg:-ml-0 relative"
+      bg={"#F4F6FA"}
+    >
       <div className="mt-2 mb-2">
         <Image
           src={require("/public/assets/logo.svg")}
@@ -15,7 +19,7 @@ const Sidebar = () => {
           height={100}
         />
       </div>
-      <div className="p-2 mt-2 w-full  flex justify-center xxxs:space-x-4 lg:space-x-2 xl:space-x-4 items-center">
+      <div className="p-2 mt-2 w-full  flex justify-center xxxs:space-x-4 lg:space-x-1 xl:space-x-2 items-center">
         <Image
           src={require("/public/assets/Avatar.svg")}
           width={60}
@@ -23,10 +27,10 @@ const Sidebar = () => {
           className="cover"
         />
         <div className="">
-          <h1 className="text-black font-bold text-base xs:text-[16px] lg:text-[16px] xl:text-[20px]">
+          <h1 className="text-black font-bold text-base xs:text-[16px] lg:text-[164x] xl:text-[18px]">
             Hamza Hashmi
           </h1>
-          <p className="text-black text-sm xs:text-[14px] lg:text-[14px] xl:text-[18px]">
+          <p className="text-black text-sm xs:text-[14px] lg:text-[14px] xl:text-[16px]">
             hashmihamza846@gmail.com
           </p>
         </div>
@@ -40,7 +44,7 @@ const Sidebar = () => {
           </Menu>
         </div>
       </div>
-      <div className="mt-8 pb-80">
+      <div className="mt-8 pb-32">
         <TabsComp />
         <div className="border border-gray-300 mt-4 w-full"></div>
         <div className="mt-4 ">

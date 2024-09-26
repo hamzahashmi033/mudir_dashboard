@@ -6,10 +6,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-export default function CardMenu({ deleteModal }) {
+export default function CardMenu({ deleteModal, updateModalOnOpen }) {
   return (
     <MenuList>
-      <MenuItem>Update</MenuItem>
+      <MenuItem onClick={updateModalOnOpen}>Update</MenuItem>
       <MenuItem color={"red"} onClick={deleteModal}>
         Delete
       </MenuItem>

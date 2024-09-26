@@ -38,14 +38,22 @@ export default function HomeSlice() {
 
   const isMobile = useBreakpointValue({ base: true, lg: false });
 
-  useEffect(() => {
+   useEffect(() => {
     if (status === "succeeded") {
       alertOpen();
-      dispatch(fetchProjects());
-    }
-    dispatch(fetchProjects());
-  }, [status]);
+      // Close the alert after 2 seconds
+      const timer = setTimeout(() => {
+        alertClose();
+      }, 2000);
 
+      return () => clearTimeout(timer); // Clear timeout on component unmount
+    }
+  }, [status, alertOpen, alertClose]);
+
+  useEffect(() => {
+    dispatch(fetchProjects());
+  }, [dispatch]);
+  
   useEffect(() => {
     // Set loading to false after a short delay to ensure layout is correctly set
     const timer = setTimeout(() => {
@@ -98,7 +106,6 @@ export default function HomeSlice() {
               bg={"#5876B7"}
               color={"white"}
               variant="solid"
-              
               onClick={onOpen2}
               ref={btnRef}
             >

@@ -64,6 +64,7 @@ export default function MainTabs({ fetchedPrjects, onOpen, onClose, btnRef }) {
                     category={elem.category}
                     tags={elem.tags}
                     remarks={elem.remarks}
+                    status={elem.status}
                     stage={elem.stage}
                     id={elem.id}
                   />
@@ -90,6 +91,7 @@ export default function MainTabs({ fetchedPrjects, onOpen, onClose, btnRef }) {
                     tags={elem.tags}
                     remarks={elem.remarks}
                     stage={elem.stage}
+                    status={elem.status}
                     id={elem.id}
                   />
                 );
@@ -115,6 +117,7 @@ export default function MainTabs({ fetchedPrjects, onOpen, onClose, btnRef }) {
                     tags={elem.tags}
                     remarks={elem.remarks}
                     stage={elem.stage}
+                    status={elem.status}
                     id={elem.id}
                   />
                 );
@@ -140,6 +143,7 @@ export default function MainTabs({ fetchedPrjects, onOpen, onClose, btnRef }) {
                     tags={elem.tags}
                     remarks={elem.remarks}
                     stage={elem.stage}
+                    status={elem.status}
                     id={elem.id}
                   />
                 );

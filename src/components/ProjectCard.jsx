@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Flex,
+  FormLabel,
   Menu,
   MenuButton,
   Modal,
@@ -12,11 +13,17 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  Input,
+  FormControl,
 } from "@chakra-ui/react";
 import * as Unicons from "@iconscout/react-unicons";
 import StepperComp from "./StepperComp";
 import Image from "next/image";
 import CardMenu from "./CardMenu";
+import { useDispatch } from "react-redux";
+import { deleteProject, fetchProjects } from "@/store/ProjectSlice";
+import UdpateModal from "./UpdateModal";
+
 export default function ProjectCard({
   title,
   category,
@@ -24,8 +31,20 @@ export default function ProjectCard({
   remarks,
   stage,
   id,
+  status,
 }) {
+  const dispatch = useDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: updateModalIsOpen,
+    onOpen: updateModalOnOpen,
+    onClose: updateModalOnClose,
+  } = useDisclosure();
+  const deleteHandler = (id) => {
+    dispatch(deleteProject(id));
+    onClose();
+    dispatch(fetchProjects());
+  };
   return (
     <Flex className="border relative w-[33%]  lg:w-[32.5%] h-[300px] xxs:w-[100%] md:w-[48%] p-2 mb-2 ml-2">
       <div className="absolute right-0 p-1 cursor-pointer">
@@ -33,7 +52,10 @@ export default function ProjectCard({
           <MenuButton as={Button}>
             <Unicons.UilEllipsisV size={20} color={"black"} />
           </MenuButton>
-          <CardMenu deleteModal={onOpen} />
+          <CardMenu
+            deleteModal={onOpen}
+            updateModalOnOpen={updateModalOnOpen}
+          />
         </Menu>
       </div>
       <Flex flexDir={"column"} w={"100%"}>
@@ -65,22 +87,42 @@ export default function ProjectCard({
           </div>
         </div>
       </Flex>
+      <UdpateModal
+        updateModalIsOpen={updateModalIsOpen}
+        updateModalOnClose={updateModalOnClose}
+        title={title}
+        category={category}
+        tags={tags}
+        status={status}
+        remarks={remarks}
+        stage={stage}
+        id={id}
+      />
+
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
+        <ModalOverlay
+          bg="none"
+          backdropFilter="auto"
+          backdropInvert="80%"
+          backdropBlur="2px"
+        />
         <ModalContent>
           <ModalHeader>Delete Project: {id}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-            odit incidunt hic voluptatum temporibus quo nulla totam ex
-            praesentium facilis.
-          </ModalBody>
+          <ModalBody>Are you you want to delete this project?</ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button
+              variant="ghost"
+              colorScheme="black"
+              mr={3}
+              onClick={onClose}
+            >
               Close
             </Button>
-            <Button variant="ghost">Secondary Action</Button>
+            <Button colorScheme="red" onClick={() => deleteHandler(id)}>
+              Delete
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

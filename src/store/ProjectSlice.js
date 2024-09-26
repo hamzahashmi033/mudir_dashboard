@@ -14,30 +14,37 @@ export const fetchProjects = createAsyncThunk(
 
 export const createProject = createAsyncThunk(
   "projects/createProject",
-  async (project) => {
+  async (project, { dispatch }) => {
     const response = await axios.post(
       `${API_URL}project/create/hamzahashmi@gmail.com`,
       project
     );
+    dispatch(fetchProjects()); 
     return response.data;
   }
 );
 
-export const updateProject = createAsyncThunk(
+export const updateExistigProject = createAsyncThunk(
   "projects/updateProject",
-  async ({ id, project }) => {
-    const response = await axios.put(`${API_URL}/${id}`, project);
+  async ({ id, project }, { dispatch }) => {
+    
+    
+    const response = await axios.put(`${API_URL}project/update/${id}/hamzahashmi@gmail.com`, project);
+    dispatch(fetchProjects()); 
     return response.data;
   }
 );
+
 
 export const deleteProject = createAsyncThunk(
   "projects/deleteProject",
-  async (id) => {
-    await axios.delete(`${API_URL}/${id}`);
+  async (id, { dispatch }) => {
+    await axios.delete(`${API_URL}project/delete/${id}/hamzahashmi@gmail.com`);
+    dispatch(fetchProjects()); 
     return id;
   }
 );
+
 const projectSlice = createSlice({
   name: "project",
   initialState: {
@@ -50,32 +57,29 @@ const projectSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProjects.pending, (state) => {
+        state.status = "loading";
       })
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.projects = action.payload;
       })
       .addCase(fetchProjects.rejected, (state, action) => {
+        state.status = "failed";
         state.error = action.error.message;
       })
       .addCase(createProject.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(createProject.fulfilled, (state, action) => {
+      .addCase(createProject.fulfilled, (state) => {
         state.status = "succeeded";
-        state.message = action.payload;
+        state.message = "Project created successfully!";
       })
-      .addCase(updateProject.fulfilled, (state, action) => {
-        const index = state.projects.findIndex(
-          (project) => project.id === action.payload.id
-        );
-        if (index !== -1) {
-          state.projects[index] = action.payload;
-        }
+      .addCase(updateExistigProject.fulfilled, (state) => {
+        state.status = "succeeded";
+        state.message = "Project updated successfully!";
       })
-      .addCase(deleteProject.fulfilled, (state, action) => {
-        state.projects = state.projects.filter(
-          (project) => project.id !== action.payload
-        );
+      .addCase(deleteProject.fulfilled, (state) => {
+        state.status = "succeeded";
+        state.message = "Project deleted successfully!";
       });
   },
 });
