@@ -46,7 +46,7 @@ export default function ProjectCard({
     dispatch(fetchProjects());
   };
   return (
-    <Flex className="border relative w-[33%]  lg:w-[32.5%] h-[300px] xxs:w-[100%] md:w-[48%] p-2 mb-2 ml-2">
+    <Flex className="border relative w-[33%]  lg:w-[32.5%] h-[300px] xxxs:w-[100%] md:w-[48%] p-2 mb-2 ml-2">
       <div className="absolute right-0 p-1 cursor-pointer">
         <Menu>
           <MenuButton as={Button}>

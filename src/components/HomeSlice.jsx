@@ -104,7 +104,7 @@ export default function HomeSlice() {
         <div className="p-2 absolute right-0">
           {isMobile ? (
             <Button
-              className="p-2"
+              className="p-2 z-100"
               size={"sm"}
               leftIcon={<PlusSquareIcon />}
               bg={"#5876B7"}
