@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const API_URL = "http://18.192.212.78:8080/";
+const API_URL = "https://dashboard.thehashmi.online/";
 
 export const fetchProjects = createAsyncThunk(
   "projects/fetchProjects",
