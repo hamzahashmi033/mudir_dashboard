@@ -30,7 +30,7 @@ export default function UdpateModal({
   updateModalOnClose,
   title,
   category,
-  tags,
+ 
   remarks,
   stage,
   status,
@@ -41,7 +41,7 @@ export default function UdpateModal({
   const [formData, setFormData] = useState({
     title: title || "",
     category: category || "",
-    tags: tags || [""],
+    
     remarks: remarks || "",
     stage: stage || 1,
     status: status || "Ongoing",
@@ -51,12 +51,12 @@ export default function UdpateModal({
     setFormData({
       title,
       category,
-      tags,
+   
       remarks,
       stage,
       status,
     });
-  }, [title, category, tags, remarks, stage, status]);
+  }, [title, category,  remarks, stage, status]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -165,7 +165,7 @@ export default function UdpateModal({
             </HStack>
           </FormControl>
 
-          <FormControl mt={4}>
+          {/* <FormControl mt={4}>
             <FormLabel>Tags</FormLabel>
             {formData.tags.map((tag, index) => (
               <HStack key={index} spacing={2}>
@@ -185,7 +185,7 @@ export default function UdpateModal({
             >
               Add Tag
             </Button>
-          </FormControl>
+          </FormControl> */}
 
         
           <FormControl mt={4}>

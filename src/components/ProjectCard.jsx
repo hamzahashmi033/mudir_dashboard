@@ -107,7 +107,7 @@ export default function ProjectCard({
           backdropBlur="2px"
         />
         <ModalContent>
-          <ModalHeader>Delete Project: {id}</ModalHeader>
+          <ModalHeader>Delete Project</ModalHeader>
           <ModalCloseButton />
           <ModalBody>Are you you want to delete this project?</ModalBody>
 
