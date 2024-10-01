@@ -123,7 +123,7 @@ export default function HomeSlice() {
             />
           )}
         </div>
-        <Flex w={"100%"}>
+        <Flex w={"100%"} className="mb-12">
           <ContentComp
             fetchedPrjects={projects}
             onOpen={onOpen2}
