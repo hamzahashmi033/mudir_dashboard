@@ -79,7 +79,7 @@ export default function HomeSlice() {
   return (
     <Flex
       color="white"
-      className="overflow-x-hidden"
+      className="overflow-x-hidden overflow-y-hidden"
       direction={{ base: "column", lg: "row" }}
     >
       <ProjectDrawer isOpen={isOpen2} onClose={onClose2} btnRef={btnRef} />
